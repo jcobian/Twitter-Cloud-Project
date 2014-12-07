@@ -4,8 +4,8 @@ import ast
 import datetime
 import string,re
 regex = re.compile('[,.!?;]')
-START_TIME = "2014-02-19 00:00:00"
-END_TIME = "2014-02-25 23:59:59"
+START_TIME = "2014-03-19 00:00:00"
+END_TIME = "2014-03-25 23:59:59"
 start_time_date = datetime.datetime.strptime(START_TIME, "%Y-%m-%d %H:%M:%S").date()
 end_time_date = datetime.datetime.strptime(END_TIME, "%Y-%m-%d %H:%M:%S").date()
 def inTimeRange(created_at):
@@ -53,6 +53,7 @@ def main():
 				word = regex.sub('',word)
 				if word != "#":
 					emit(word.lower(),"1")
+
 
 if __name__ == '__main__':
 	main()
