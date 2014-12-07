@@ -23,14 +23,6 @@ class Tweet(db.Model):
 #------------------------------------------------------------------------
 # URL Routing
 
-@app.route("/")
-def test():
-    output = ''; 
-    for item in db.session.query(Tweet).filter(Tweet.Favorites > 20):
-        output += str(item.TweetID) + '<br>'
-
-    return output
-
 # Current time ranges
 # 2014-02-19 18:13:00 to 2014-02-25 23:36:59
 # 2014-02-26 00:17:00 to 2014-03-04 23:59:59
@@ -40,8 +32,9 @@ def test():
 # 2014-03-26 00:00:00 to 2014-04-01 23:59:59
 # 2014-04-02 00:00:00 to 2014-04-08 23:59:59
 # 2014-04-09 00:00:00 to 2014-04-09 03:31:59
+@app.route("/")
 @app.route("/timeRange/<int:timeRangeIndex>")
-def getDataInTimeRange(timeRangeIndex):
+def getDataInTimeRange(timeRangeIndex=1):
     timeRangeIndex = int(timeRangeIndex)
     if timeRangeIndex == 1:
         pass
