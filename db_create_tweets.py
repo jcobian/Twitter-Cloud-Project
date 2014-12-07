@@ -46,7 +46,8 @@ def reformatTime(time):
 
 def main():
 	#grab all of standard input
-	f = open("crimea-data-full.txt")
+	#f = open("crimea-data-full.txt")
+	f = open("test.input")
 	withLats= open("withLats.txt","w")
 	noLats = open("noLats.txt","w")
 	#hashtags = open("Hashtag.txt","w")
@@ -65,6 +66,7 @@ def main():
 		time2 = reformatTime(time)
 		retweets = d['retweet_count']
 		favorites = d['favorite_count']
+		#text = d['text']
 		#coordiantes is a dictionary
 		coordinates = d['coordinates']
 		if coordinates:
@@ -75,10 +77,23 @@ def main():
 
 		if lat and longi:
 			withLats.write("%s,%s,%s,%s,%s,%s\n" % (tweet_id,lat,longi,time2,retweets,favorites))
+			'''
+			try:
+				withLats.write(",\"%s\"\n" % text)
+			except:
+				withLats.write(",Content Not Available\n")
 			#print "%s,%s,%s,%s,%s,%s\n" % (tweetID,lat,longi,time,retweets,favorites)
+			'''
 		else:
 			noLats.write("%s,%s,%s,%s\n" % (tweet_id,time2,retweets,favorites))
 			#print "%s,%s,%s,%s\n" % (tweetID,time,retweets,favorites)
+			'''
+			try:
+				noLats.write(",\"%s\"\n" % text)
+			except:
+				noLats.write(",Content Not Available\n")
+			'''
+
 
 
 		'''

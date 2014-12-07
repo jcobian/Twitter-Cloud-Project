@@ -38,7 +38,9 @@ def getTime(created_at):
 	hour = clocktime[0]
 	minutes = clocktime[1]
 	#secs = clocktime[2]
-	tweet_time = "%s-%s-%s %s:%s" % (year,month,day,hour,minutes)
+	#tweet_time = "%s-%s-%s %s:%s" % (year,month,day,hour,minutes)
+	tweet_time = "%s-%s-%s %s" % (year,month,day,hour)
+
 	return tweet_time
 
 def emit(key,value):
