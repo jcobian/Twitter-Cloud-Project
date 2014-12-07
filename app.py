@@ -3,7 +3,7 @@
 #
 # Core app code that launches the actual application
 
-from flask import Flask
+from flask import Flask, render_template
 from flask.ext.sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -40,25 +40,27 @@ def test():
 # 2014-03-26 00:00:00 to 2014-04-01 23:59:59
 # 2014-04-02 00:00:00 to 2014-04-08 23:59:59
 # 2014-04-09 00:00:00 to 2014-04-09 03:31:59
-@app.route("/time_range/<int:time_range_index>")
+@app.route("/timeRange/<int:timeRangeIndex>")
 def getDataInTimeRange(timeRangeIndex):
-    if timeRange == 1:
+    timeRangeIndex = int(timeRangeIndex)
+    if timeRangeIndex == 1:
         pass
-    elif timeRange == 2:
+    elif timeRangeIndex == 2:
         pass
-    elif timeRange == 3:
+    elif timeRangeIndex == 3:
         pass
-    elif timeRange == 4:
+    elif timeRangeIndex == 4:
         pass
-    elif timeRange == 5:
+    elif timeRangeIndex == 5:
         pass
-    elif timeRange == 6:
+    elif timeRangeIndex == 6:
         pass
-    elif timeRange == 7:
+    elif timeRangeIndex == 7:
         pass
     else:
         # Return some kind of error message
         pass
+    return render_template('timeRange.html', rangeIndex=timeRangeIndex)
 	
 
 if __name__ == '__main__':
