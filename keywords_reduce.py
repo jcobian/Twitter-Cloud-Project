@@ -7,10 +7,11 @@ def emitInOrder(results,limit=100):
         if limit:
                 results = results[:100]
         for rank,tup in enumerate(results):
-                emit(tup[0],tup[2],tup[3],rank+1)
+                emit(tup[0],tup[1])
 
-def emit(key,startTime,endTime,value):
-        print "%s,%s,%s,%s" % (key,startTime,endTime,value)
+def emit(key,count):
+        print "%s\t%s" % (key,count)
+        #print "%s,%s,%s,%s,%s" % (key,startTime,endTime,rank,count)
 
 def main():
         results = []
@@ -19,22 +20,25 @@ def main():
         for line in stdin:
                 #line = line.strip()
                 arr = line.split("\t")
+                '''
                 emitKey = arr[0].split(";")
                 key = emitKey[0]
                 startTime = emitKey[1]
                 endTime = emitKey[2]
+                '''
+                key = arr[0]
                 value = arr[1]
                 if not oldkey:
                         oldkey = key
                         count = int(value)
                 else:
                         if oldkey == key:
-                                count+=1
+                                count+=int(value)
                         else:
-                                results.append((oldkey,count,startTime,endTime))
+                                results.append((oldkey,count))
                                 oldkey = key
                                 count = int(value)
-        results.append((oldkey,count,startTime,endTime))
+        results.append((oldkey,count))
         emitInOrder(results)
 
 if __name__ == "__main__":

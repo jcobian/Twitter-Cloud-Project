@@ -20,12 +20,6 @@ def main():
         for line in stdin:
                 #line = line.strip()
                 arr = line.split("\t")
-                '''
-                emitKey = arr[0].split(";")
-                key = emitKey[0]
-                startTime = emitKey[1]
-                endTime = emitKey[2]
-                '''
                 key = arr[0]
                 value = arr[1]
                 if not oldkey:

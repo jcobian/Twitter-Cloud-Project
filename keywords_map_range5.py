@@ -2,10 +2,10 @@
 import sys
 import ast
 import datetime
-START_TIME = "2014-Feb-1 12:00:00"
-END_TIME = "2014-Mar-1 12:00:00"
-start_time_date = datetime.datetime.strptime(START_TIME, "%Y-%b-%d %H:%M:%S").date()
-end_time_date = datetime.datetime.strptime(END_TIME, "%Y-%b-%d %H:%M:%S").date()
+START_TIME="2014-03-19 00:00:00"  
+END_TIME = "2014-03-25 23:59:59"
+start_time_date = datetime.datetime.strptime(START_TIME, "%Y-%m-%d %H:%M:%S").date()
+end_time_date = datetime.datetime.strptime(END_TIME, "%Y-%m-%d %H:%M:%S").date()
 def inTimeRange(created_at):
 	tokens = created_at.split()
 	year = tokens[5]
@@ -29,8 +29,7 @@ def emit(key,value):
 
 def main():
 	#grab all of standard input
-	f = sys.stdin.readlines()
-	for line in f:
+	for line in sys.stdin:
 		#load in the line into a python dictionary 
 		#(these lines aren't actually json! they are the result of a print of a python dictionary)
 		d = ast.literal_eval(line)
@@ -43,9 +42,11 @@ def main():
 		#emit the hashtags
 		tokens = text.split()
 		for word in tokens:
-			if word.isalpha():
+			if word.isalpha() and len(word)>3:
 				emit(word,"1")
 
+
+	losing.close()
 
 if __name__ == '__main__':
 	main()
