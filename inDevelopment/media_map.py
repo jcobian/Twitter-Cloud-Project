@@ -1,4 +1,4 @@
-import json
+#!/usr/bin/python
 import sys
 import ast
 
@@ -15,7 +15,7 @@ def main():
 		#load in the line into a python dictionary 
 		#(these lines aren't actually json! they are the result of a print of a python dictionary)
 		d = ast.literal_eval(line)
-
+		tweetID = d['id']
 		#now the unique code for each mapper begins. above should be standard for all our mappers
 
 		#grab out the actual text of the tweet
@@ -23,7 +23,7 @@ def main():
 		#emit the hashtags
 		tokens = text.split()
 		for word in tokens:
-			if word.startswith("#"):
+			if word.startswith("http") or word.startswith("bit.ly"):
 				emit(word,"1")
 
 

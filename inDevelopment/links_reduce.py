@@ -7,36 +7,29 @@ def emitInOrder(results,limit=100):
         if limit:
                 results = results[:100]
         for rank,tup in enumerate(results):
-                emit(tup[0],tup[2],tup[3],rank+1,tup[1])
+                emit(tup[0],tup[2],tup[3],rank+1)
 
-def emit(key,startTime,endTime,rank,count):
-        print "%s\t%s" % (key,count)
-        #print "%s,%s,%s,%s,%s" % (key,startTime,endTime,rank,count)
+def emit(key,startTime,endTime,value):
+        print "%s,%s,%s,%s" % (key,startTime,endTime,value)
 
 def main():
         results = []
         oldkey = None
         count = 0
-        startTime = None
-        endTime = None
-        tweet_id = None
         for line in stdin:
                 #line = line.strip()
                 arr = line.split("\t")
-                '''
                 emitKey = arr[0].split(";")
                 key = emitKey[0]
                 startTime = emitKey[1]
                 endTime = emitKey[2]
-                '''
-                key = arr[0]
                 value = arr[1]
                 if not oldkey:
                         oldkey = key
                         count = int(value)
                 else:
                         if oldkey == key:
-                                count+=int(value)
+                                count+=1
                         else:
                                 results.append((oldkey,count,startTime,endTime))
                                 oldkey = key
