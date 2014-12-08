@@ -2,8 +2,8 @@
 import sys
 import ast
 import datetime
-START_TIME="2014-04-02 00:00:00"  
-END_TIME = "2014-04-09 23:59:59"
+START_TIME="2014-03-12 00:00:00"  
+END_TIME = "2014-03-18 23:59:59"
 start_time_date = datetime.datetime.strptime(START_TIME, "%Y-%m-%d %H:%M:%S").date()
 end_time_date = datetime.datetime.strptime(END_TIME, "%Y-%m-%d %H:%M:%S").date()
 def inTimeRange(created_at):
@@ -42,9 +42,8 @@ def main():
 		#emit the hashtags
 		tokens = text.split()
 		for word in tokens:
-			if word.isalpha() and len(word)>3:
+			if word.startswith("pic.twitter.com"):
 				emit(word,"1")
-
 
 
 if __name__ == '__main__':

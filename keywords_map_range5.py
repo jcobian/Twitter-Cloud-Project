@@ -46,7 +46,6 @@ def main():
 				emit(word,"1")
 
 
-	losing.close()
 
 if __name__ == '__main__':
 	main()

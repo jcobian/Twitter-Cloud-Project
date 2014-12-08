@@ -3,7 +3,7 @@ import sys
 
 def main():
 	start_day = sys.argv[1]
-	end_day = sys.argv[3]
+	end_day = sys.argv[2]
 	limit = int(sys.argv[3])
 	results = []
 	usedKeys = set()
