@@ -21,14 +21,36 @@
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-	<div class="row">
+	<div class="row" id="header">
 	        <h1>TwitterViz</h1>
 		<h3>Unrest in Crimea</h3>
 	</div>
 	
+	<!-- If time permits, we can put a graph of tweets over time here -->
+
+	<div class="row " id="timeline">
+		<p class="small-1 small-offset-2 columns">Time range is {{ rangeIndex }}</p>
+		<ul class="button-group round">
+			<li class="small-1 columns"><a href="{{ instance }}/timeRange/1" class="button">1</a></li>
+			<li class="small-1 columns"><a href="{{ instance }}/timeRange/2" class="button">2</a></li>
+			<li class="small-1 columns"><a href="{{ instance }}/timeRange/3" class="button">3</a></li>
+			<li class="small-1 columns"><a href="{{ instance }}/timeRange/4" class="button">4</a></li>
+			<li class="small-1 columns"><a href="{{ instance }}/timeRange/5" class="button">5</a></li>
+			<li class="small-1 columns"><a href="{{ instance }}/timeRange/6" class="button">6</a></li>
+			<li class="small-1 end columns"><a href="{{ instance }}/timeRange/7" class="button">7</a></li>
+		</ul>
+	</div>
+
 	<div class="row">
-		<p>Time range is {{ rangeIndex }}</p>
-	</div>        
+		<div class="small-12 medium-12 large-6 columns" id="map">Map</div>
+		<div class="small-12 medium-6 large-3 columns" id="top-hashtags">Top Hashtags</div>
+		<div class="small-12 medium-6 large-3 columns" id="top-keywords">Top Keywords</div>
+	</div>
+        
+	<div class="row">
+		<div class="medium-7 large-6 columns" id="top-images">Top Images</div>
+		<div class="medium-5 large-6 columns" id="top-links">Top Links</div>
+	</div>
 
 	<script src="{{ url_for('static', filename='js/vendor/jquery-1.10.2.min.js') }}"></script>
 	<script src="{{ url_for('static', filename='js/vendor/foundation.min.js') }}"></script>
