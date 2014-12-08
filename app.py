@@ -11,12 +11,25 @@ app = Flask(__name__)
 #------------------------------------------------------------------------
 # Database connection and setup
 
+instanceAddress = 'http://ec2-54-164-93-32.compute-1.amazonaws.com:5000'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://masteruser:_cloud2014@cloudprojectdb.cqwak4ataijt.us-east-1.rds.amazonaws.com:3306/cloudproject'
 db = SQLAlchemy(app)
 
 class Tweet(db.Model):
     __tablename__ = 'Tweet'
     __table_args__ = {'autoload':True, 'autoload_with':db.engine}
+
+#class TopHashtag(db.Model):
+#    __tablename__ = 'TopHashtag'
+#    __table_args__ = {'autoload':True, 'autoload_with':db.engine}
+#
+#class TopLink(db.Model):
+#    __tablename__ = 'TopLink'
+#    __table_args__ = {'autoload':True, 'autoload_with':db.engine}
+#
+#class TopImage(db.Model):
+#    __tablename__ = 'TopImage'
+#    __table_args__ = {'autoload':True, 'autoload_with':db.engine}
 
 #TODO: Add other tables here
 
@@ -52,7 +65,7 @@ def getDataInTimeRange(timeRangeIndex=1):
     else:
         # Return some kind of error message
         pass
-    return render_template('timeRange.html', rangeIndex=timeRangeIndex)
+    return render_template('timeRange.html', instance=instanceAddress, rangeIndex=timeRangeIndex)
 	
 
 if __name__ == '__main__':
