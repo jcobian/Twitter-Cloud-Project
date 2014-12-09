@@ -23,6 +23,10 @@ html {
     line-height: 1.4;
 }
 
+h1, h2, h3, h4, h5, h6 {
+	text-align: center;
+}
+
 /*
  * Remove text-shadow in selection highlight: h5bp.com/i
  * These selection rule sets have to be separate.
@@ -82,6 +86,16 @@ textarea {
     resize: vertical;
 }
 
+/*
+ * Override some styles of Foundation
+ */
+
+.row {
+	max-width: 90%;
+}
+
+
+
 /* ==========================================================================
    Browse Happy prompt
    ========================================================================== */
@@ -98,19 +112,41 @@ textarea {
    ========================================================================== */
 
 
+ul.data-display {
+	overflow: scroll;
+	width: 100%;
+	height: 30em;
+	-webkit-box-shadow: inset 0em 0em 2em -1em grey;
+	padding: 1em 3em;
+	margin: 0;
+}
 
+#timeline li.small-1 {
+	padding: 0;
+	width: 14.2%;
+}
 
+#timeline ul {
+	
+	margin-left: auto;
+	margin-right: auto;
+}
 
+a.button {
+	width: 100%;
+	padding: 0.6em 0.2em;
+}
 
+#header {
+	margin-top: 3em;
+	margin-bottom: 4em;
+}
 
-
-
-
-
-
-
-
-
+#map-canvas {
+	height: 30em;
+	padding: 0;
+	margin: 0;
+}
 
 
 /* ==========================================================================
