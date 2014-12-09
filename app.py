@@ -41,8 +41,9 @@ db.session.commit()
 # Queries to database
 
 def getInfoForDateRange(startTime, endTime):
-	keywords = db.session.query(TopKeyword).filter_by(TopKeyword.StartRange = startTime, TopKeyword.EndRange = endTime)
-	print keywords
+	keywords = db.session.query(TopKeyword).filter(TopKeyword.StartRange == startTime, TopKeyword.EndRange == endTime)
+	for keyword in keywords:
+		print keyword.Keyword
 	return keywords
 
 #------------------------------------------------------------------------
