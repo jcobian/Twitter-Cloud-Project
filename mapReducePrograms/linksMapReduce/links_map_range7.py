@@ -2,10 +2,10 @@
 import sys
 import ast
 import datetime
-START_TIME = "2014-Feb-1 12:00:00"
-END_TIME = "2014-Mar-1 12:00:00"
-start_time_date = datetime.datetime.strptime(START_TIME, "%Y-%b-%d %H:%M:%S").date()
-end_time_date = datetime.datetime.strptime(END_TIME, "%Y-%b-%d %H:%M:%S").date()
+START_TIME="2014-04-02 00:00:00"  
+END_TIME = "2014-04-09 23:59:59"
+start_time_date = datetime.datetime.strptime(START_TIME, "%Y-%m-%d %H:%M:%S").date()
+end_time_date = datetime.datetime.strptime(END_TIME, "%Y-%m-%d %H:%M:%S").date()
 def inTimeRange(created_at):
 	tokens = created_at.split()
 	year = tokens[5]
@@ -29,20 +29,25 @@ def emit(key,value):
 
 def main():
 	#grab all of standard input
-	f = sys.stdin.readlines()
-	for line in f:
+	#index = 0
+	for line in sys.stdin:
+		#index+=1
 		#load in the line into a python dictionary 
 		#(these lines aren't actually json! they are the result of a print of a python dictionary)
 		d = ast.literal_eval(line)
 		createdAt = d['created_at']
 		if not inTimeRange(createdAt):
 			continue
+			
 		#grab out the actual text of the tweet
 		text = d['text']
+		
+
 		#emit the hashtags
 		tokens = text.split()
 		for word in tokens:
-			if word.startswith("http") or word.startswith("bit.ly"):
+			if word.startswith("http"):
+				#print "YES"
 				emit(word,"1")
 
 

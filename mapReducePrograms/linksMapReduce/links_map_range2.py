@@ -2,8 +2,8 @@
 import sys
 import ast
 import datetime
-START_TIME="2014-02-19 00:00:00"
-END_TIME = "2014-02-25 23:59:59"
+START_TIME="2014-02-26 00:00:00" 
+END_TIME = "2014-03-04 23:59:59" 
 start_time_date = datetime.datetime.strptime(START_TIME, "%Y-%m-%d %H:%M:%S").date()
 end_time_date = datetime.datetime.strptime(END_TIME, "%Y-%m-%d %H:%M:%S").date()
 def inTimeRange(created_at):
@@ -29,7 +29,9 @@ def emit(key,value):
 
 def main():
 	#grab all of standard input
+	#index = 0
 	for line in sys.stdin:
+		#index+=1
 		#load in the line into a python dictionary 
 		#(these lines aren't actually json! they are the result of a print of a python dictionary)
 		d = ast.literal_eval(line)
@@ -39,10 +41,13 @@ def main():
 			
 		#grab out the actual text of the tweet
 		text = d['text']
+		
+
 		#emit the hashtags
 		tokens = text.split()
 		for word in tokens:
-			if word.startswith("pic.twitter.com"):
+			if word.startswith("http"):
+				#print "YES"
 				emit(word,"1")
 
 
