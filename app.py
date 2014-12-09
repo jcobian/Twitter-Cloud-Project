@@ -19,19 +19,31 @@ class Tweet(db.Model):
     __tablename__ = 'Tweet'
     __table_args__ = {'autoload':True, 'autoload_with':db.engine}
 
-#class TopHashtag(db.Model):
-#    __tablename__ = 'TopHashtag'
-#    __table_args__ = {'autoload':True, 'autoload_with':db.engine}
-#
-#class TopLink(db.Model):
-#    __tablename__ = 'TopLink'
-#    __table_args__ = {'autoload':True, 'autoload_with':db.engine}
-#
-#class TopImage(db.Model):
-#    __tablename__ = 'TopImage'
-#    __table_args__ = {'autoload':True, 'autoload_with':db.engine}
+class TopHashtag(db.Model):
+    __tablename__ = 'TopHashtag'
+    __table_args__ = {'autoload':True, 'autoload_with':db.engine}
 
-#TODO: Add other tables here
+class TopLink(db.Model):
+    __tablename__ = 'TopLink'
+    __table_args__ = {'autoload':True, 'autoload_with':db.engine}
+
+class TopImage(db.Model):
+    __tablename__ = 'TopImage'
+    __table_args__ = {'autoload':True, 'autoload_with':db.engine}
+
+class TopKeyword(db.Model):
+    __tablename__ = 'TopKeyword'
+    __table_args__ = {'autoload':True, 'autoload_with':db.engine}
+
+db.session.commit()
+
+#-----------------------------------------------------------------------
+# Queries to database
+
+def getInfoForDateRange(startTime, endTime):
+	keywords = db.session.query(TopKeyword).filter_by(TopKeyword.StartRange = startTime, TopKeyword.EndRange = endTime)
+	print keywords
+	return keywords
 
 #------------------------------------------------------------------------
 # URL Routing
@@ -49,7 +61,8 @@ class Tweet(db.Model):
 def getDataInTimeRange(timeRangeIndex=1):
     timeRangeIndex = int(timeRangeIndex)
     if timeRangeIndex == 1:
-        pass
+	topKeywords = getInfoForDateRange('2014-02-19 00:00:00', '2014-02-25 23:59:59')
+
     elif timeRangeIndex == 2:
         pass
     elif timeRangeIndex == 3:
