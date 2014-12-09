@@ -17,8 +17,6 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
         <script src="{{ url_for('static', filename='js/vendor/modernizr-2.6.2.min.js') }}"></script>
 
-	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUIo23g_kpQeVM997Q4UVSukot_9NK9qo"></script>
-	<script type="text/javascript" src="{{ url_for('static', filename='js/map.js') }}"></script>
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -91,6 +89,9 @@
 	<script>
 		$(document).foundation();
 	</script>
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUIo23g_kpQeVM997Q4UVSukot_9NK9qo"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/map.js') }}"></script>
+
     </body>
 </html>
 

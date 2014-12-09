@@ -56,8 +56,11 @@ def getInfoForDateRange(startTime, endTime):
 	links = list()
 	for link in db.session.query(TopLink).filter(TopLink.StartRange == startTime, TopLink.EndRange == endTime):
 		links.append(link.Link)
+	del tweetLocations[:]
+	print tweetLocations
 	for location in db.session.query(Tweet).filter(Tweet.Lat != None, Tweet.Lng != None, Tweet.Time > startTime, Tweet.Time < endTime):
 		tweetLocations.append({'lat': str(location.Lat), 'lng': str(location.Lng)})
+	print tweetLocations
 	return keywords, hashtags, images, links
 
 #------------------------------------------------------------------------
@@ -98,7 +101,7 @@ def getDataInTimeRange(timeRangeIndex=1):
 
 @app.route("/tweetLocations")
 def getTweetLocations():
-	return json.dumps(tweetLocations)	
+	return json.dumps(tweetLocations, separators=(',', ': '))	
 
 if __name__ == '__main__':
     # Set to false before deployment
