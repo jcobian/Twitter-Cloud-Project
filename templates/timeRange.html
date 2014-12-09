@@ -16,6 +16,9 @@
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/foundation.css') }}"/>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
         <script src="{{ url_for('static', filename='js/vendor/modernizr-2.6.2.min.js') }}"></script>
+
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUIo23g_kpQeVM997Q4UVSukot_9NK9qo"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/map.js') }}"></script>
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -23,33 +26,64 @@
         <![endif]-->
 	<div class="row" id="header">
 	        <h1>TwitterViz</h1>
-		<h3>Unrest in Crimea</h3>
+		<h3 class="subheader">Unrest in Crimea</h3>
 	</div>
 	
 	<!-- If time permits, we can put a graph of tweets over time here -->
 
 	<div class="row " id="timeline">
-		<p class="small-1 small-offset-2 columns">Time range is {{ rangeIndex }}</p>
 		<ul class="button-group round">
-			<li class="small-1 columns"><a href="{{ instance }}/timeRange/1" class="button">2/19 - 2/25</a></li>
-			<li class="small-1 columns"><a href="{{ instance }}/timeRange/2" class="button">2/26 - 3/4</a></li>
-			<li class="small-1 columns"><a href="{{ instance }}/timeRange/3" class="button">3/5 - 3/11</a></li>
-			<li class="small-1 columns"><a href="{{ instance }}/timeRange/4" class="button">3/12 - 3/18</a></li>
-			<li class="small-1 columns"><a href="{{ instance }}/timeRange/5" class="button">3/19 - 3/25</a></li>
-			<li class="small-1 columns"><a href="{{ instance }}/timeRange/6" class="button">3/26 - 4/1</a></li>
-			<li class="small-1 end columns"><a href="{{ instance }}/timeRange/7" class="button">4/2 - 4/9</a></li>
+			<li class="small-1 columns"><a href="{{ instance }}/timeRange/1" class="button">2/19 ------ 2/25</a></li>
+			<li class="small-1 columns"><a href="{{ instance }}/timeRange/2" class="button">2/26 ------ 3/4</a></li>
+			<li class="small-1 columns"><a href="{{ instance }}/timeRange/3" class="button">3/5 ------ 3/11</a></li>
+			<li class="small-1 columns"><a href="{{ instance }}/timeRange/4" class="button">3/12 ------ 3/18</a></li>
+			<li class="small-1 columns"><a href="{{ instance }}/timeRange/5" class="button">3/19 ------ 3/25</a></li>
+			<li class="small-1 columns"><a href="{{ instance }}/timeRange/6" class="button">3/26 ------ 4/1</a></li>
+			<li class="small-1 end columns"><a href="{{ instance }}/timeRange/7" class="button">4/2 ------ 4/9</a></li>
 		</ul>
 	</div>
 
 	<div class="row">
-		<div class="small-12 medium-12 large-6 columns" id="map">Map</div>
-		<div class="small-12 medium-6 large-3 columns" id="top-hashtags">Top Hashtags</div>
-		<div class="small-12 medium-6 large-3 columns" id="top-keywords">Top Keywords</div>
+		<div class="small-12 medium-12 large-6 columns">
+			<h3>Tweet Locations</h3>
+			<div id="map-canvas"></div>
+		</div>
+		<div class="small-12 medium-6 large-3 columns" id="top-hashtags">
+			<h3>Top Hashtags</h3>
+			<ul class="data-display">
+    			{% for hashtag in topHashtags %}
+        			<li>{{ hashtag }}</li>
+    			{% endfor %}
+    			</ul>
+		</div>
+		<div class="small-12 medium-6 large-3 columns" id="top-keywords">
+			<h3>Top Keywords</h3>
+			<ul class="data-display">
+    			{% for keyword in topKeywords %}
+        			<li>{{ keyword }}</li>
+    			{% endfor %}
+    			</ul>
+
+		</div>
 	</div>
         
 	<div class="row">
-		<div class="medium-7 large-6 columns" id="top-images">Top Images</div>
-		<div class="medium-5 large-6 columns" id="top-links">Top Links</div>
+		<div class="medium-7 large-6 columns" id="top-images">
+			<h3>Top Images</h3>
+			<ul class="data-display">
+    			{% for image in topImages %}
+        			<li><a href="{{ image }}">{{ image }}</a></li>
+    			{% endfor %}
+    			</ul>
+		</div>
+		<div class="medium-5 large-6 columns" id="top-links">
+			<h3>Top Links</h3>			
+			<ul class="data-display">
+    			{% for link in topLinks %}
+        			<li><a href="{{ link }}">{{ link }}</a></li>
+    			{% endfor %}
+    			</ul>
+		</div>
 	</div>
 
 	<script src="{{ url_for('static', filename='js/vendor/jquery-1.10.2.min.js') }}"></script>
