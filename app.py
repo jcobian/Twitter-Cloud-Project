@@ -120,7 +120,4 @@ def getTweetLocations():
 	return json.dumps(tweetLocations, separators=(',', ': '))	
 
 if __name__ == '__main__':
-    # Set to false before deployment
-    # Allows server to update on code changes without having to restart it
-    app.debug = True
     app.run(host='0.0.0.0')
