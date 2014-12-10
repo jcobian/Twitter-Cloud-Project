@@ -6,6 +6,8 @@
 from flask import Flask, render_template
 from flask.ext.sqlalchemy import SQLAlchemy
 import json
+from bs4 import BeautifulSoup
+import urllib2
 
 app = Flask(__name__)
 
@@ -36,6 +38,11 @@ class TopKeyword(db.Model):
     __tablename__ = 'TopKeyword'
     __table_args__ = {'autoload':True, 'autoload_with':db.engine}
 
+class TopLinkTest(db.Model):
+    __tablename__ = 'TopLinkTest'
+    __table_args__ = {'autoload':True, 'autoload_with':db.engine}
+
+
 db.session.commit()
 
 #-----------------------------------------------------------------------
@@ -54,8 +61,11 @@ def getInfoForDateRange(startTime, endTime):
 	for image in db.session.query(TopImage).filter(TopImage.StartRange == startTime, TopImage.EndRange == endTime):
 		images.append(image.Image)
 	links = list()
-	for link in db.session.query(TopLink).filter(TopLink.StartRange == startTime, TopLink.EndRange == endTime):
-		links.append(link.Link)
+	for link in db.session.query(TopLinkTest).filter(TopLinkTest.StartRange == startTime, TopLinkTest.EndRange == endTime):
+		d = dict()
+		d['url'] = link.Link
+		d['title'] = link.Title
+		links.append(d)
 	del tweetLocations[:]
 	for location in db.session.query(Tweet).filter(Tweet.Lat != None, Tweet.Lng != None, Tweet.Time > startTime, Tweet.Time < endTime):
 		tweetLocations.append({'lat': str(location.Lat), 'lng': str(location.Lng)})
