@@ -27,9 +27,8 @@
 		<h3 class="subheader">Unrest in Crimea</h3>
 	</div>
 	
-	<!-- If time permits, we can put a graph of tweets over time here -->
-
 	<div class="row " id="timeline">
+		<h3 id="current-time-range">Currently displaying data from {{ timeRange }}</h3>
 		<ul class="button-group round">
 			<li class="small-1 columns"><a href="{{ instance }}/timeRange/1" class="button">2/19 ------ 2/25</a></li>
 			<li class="small-1 columns"><a href="{{ instance }}/timeRange/2" class="button">2/26 ------ 3/4</a></li>
@@ -42,11 +41,13 @@
 	</div>
 
 	<div class="row">
-		<div class="small-12 medium-12 large-6 columns">
+		<div class="large-12 columns">
 			<h3>Tweet Locations</h3>
 			<div id="map-canvas"></div>
 		</div>
-		<div class="small-12 medium-6 large-3 columns" id="top-hashtags">
+	</div>
+	<div class="row">
+		<div class="small-12 large-4 columns" id="top-hashtags">
 			<h3>Top Hashtags</h3>
 			<ul class="data-display">
     			{% for hashtag in topHashtags %}
@@ -54,7 +55,7 @@
     			{% endfor %}
     			</ul>
 		</div>
-		<div class="small-12 medium-6 large-3 columns" id="top-keywords">
+		<div class="small-12 large-4 columns" id="top-keywords">
 			<h3>Top Keywords</h3>
 			<ul class="data-display">
     			{% for keyword in topKeywords %}
@@ -63,18 +64,7 @@
     			</ul>
 
 		</div>
-	</div>
-        
-	<div class="row">
-		<div class="medium-7 large-6 columns" id="top-images">
-			<h3>Top Images</h3>
-			<ul class="data-display">
-    			{% for image in topImages %}
-        			<li><a href="{{ image }}">{{ image }}</a></li>
-    			{% endfor %}
-    			</ul>
-		</div>
-		<div class="medium-5 large-6 columns" id="top-links">
+		<div class="small-12 large-4 columns" id="top-links">
 			<h3>Top Links</h3>			
 			<ul class="data-display">
     			{% for link in topLinks %}
@@ -90,6 +80,7 @@
 		$(document).foundation();
 	</script>
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUIo23g_kpQeVM997Q4UVSukot_9NK9qo"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/markerClusterer.min.js') }}"></script>
 	<script type="text/javascript" src="{{ url_for('static', filename='js/map.js') }}"></script>
 
     </body>

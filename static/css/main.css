@@ -92,6 +92,7 @@ textarea {
 
 .row {
 	max-width: 90%;
+	padding-bottom: 2.5em;
 }
 
 
@@ -139,7 +140,7 @@ a.button {
 
 #header {
 	margin-top: 3em;
-	margin-bottom: 4em;
+	margin-bottom: 2em;
 }
 
 #map-canvas {

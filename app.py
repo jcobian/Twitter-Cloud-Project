@@ -57,10 +57,8 @@ def getInfoForDateRange(startTime, endTime):
 	for link in db.session.query(TopLink).filter(TopLink.StartRange == startTime, TopLink.EndRange == endTime):
 		links.append(link.Link)
 	del tweetLocations[:]
-	print tweetLocations
 	for location in db.session.query(Tweet).filter(Tweet.Lat != None, Tweet.Lng != None, Tweet.Time > startTime, Tweet.Time < endTime):
 		tweetLocations.append({'lat': str(location.Lat), 'lng': str(location.Lng)})
-	print tweetLocations
 	return keywords, hashtags, images, links
 
 #------------------------------------------------------------------------
@@ -80,24 +78,32 @@ def getDataInTimeRange(timeRangeIndex=1):
     timeRangeIndex = int(timeRangeIndex)
     if timeRangeIndex == 1:
 	kw, ht, img, lk = getInfoForDateRange('2014-02-19 00:00:00', '2014-02-25 23:59:59')
+	tr = '2/19 - 2/25'
     elif timeRangeIndex == 2: 
 	kw, ht, img, lk = getInfoForDateRange('2014-02-26 00:00:00', '2014-03-04 23:59:59')
+	tr = '2/26 - 3/4'
     elif timeRangeIndex == 3:
 	kw, ht, img, lk = getInfoForDateRange('2014-03-05 00:00:00', '2014-03-11 23:59:59')
+	tr = '3/5 - 3/11'
     elif timeRangeIndex == 4:
 	kw, ht, img, lk = getInfoForDateRange('2014-03-12 00:00:00', '2014-03-18 23:59:59')
+	tr = '3/12 - 3/18'
     elif timeRangeIndex == 5:
 	kw, ht, img, lk = getInfoForDateRange('2014-03-19 00:00:00', '2014-03-25 23:59:59')
+	tr = '3/19 - 3/25'
     elif timeRangeIndex == 6:
 	kw, ht, img, lk = getInfoForDateRange('2014-03-26 00:00:00', '2014-04-01 23:59:59')
+	tr = '3/26 - 4/1'
     elif timeRangeIndex == 7:
 	kw, ht, img, lk = getInfoForDateRange('2014-04-02 00:00:00', '2014-04-09 23:59:59')
+	tr = '4/2 - 4/9'
     else:
     	kw = ['Error: No data in that time range']
     	lk = kw
 	img = kw
 	ht = kw
-    return render_template('timeRange.html', instance=instanceAddress, rangeIndex=timeRangeIndex, topKeywords=kw, topHashtags=ht, topImages=img, topLinks=lk)
+	tr = ''
+    return render_template('timeRange.html', instance=instanceAddress, timeRange=tr, topKeywords=kw, topHashtags=ht, topImages=img, topLinks=lk)
 
 @app.route("/tweetLocations")
 def getTweetLocations():
