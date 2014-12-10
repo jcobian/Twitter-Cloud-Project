@@ -8,6 +8,8 @@ START_TIME = "2014-02-19 00:00:00"
 END_TIME = "2014-02-25 23:59:59"
 start_time_date = datetime.datetime.strptime(START_TIME, "%Y-%m-%d %H:%M:%S").date()
 end_time_date = datetime.datetime.strptime(END_TIME, "%Y-%m-%d %H:%M:%S").date()
+
+#return true if created_at is in the date range above
 def inTimeRange(created_at):
 	tokens = created_at.split()
 	year = tokens[5]
@@ -26,9 +28,7 @@ def inTimeRange(created_at):
 
 def emit(key,value):
 	try:
-		#emitKey = "%s;%s;%s" % (key,START_TIME,END_TIME)
-		emitKey = key
-		print "%s\t%s" % (emitKey,value)
+		print "%s\t%s" % (key,value)
 	except UnicodeEncodeError:
 		pass
 
@@ -38,8 +38,9 @@ def main():
 		#load in the line into a python dictionary 
 		#(these lines aren't actually json! they are the result of a print of a python dictionary)
 		d = ast.literal_eval(line)
-		#tweet_id = d['id']
 		#now the unique code for each mapper begins. above should be standard for all our mappers
+		
+		#if not in the time range, skip it
 		createdAt = d['created_at']
 		if not inTimeRange(createdAt):
 			continue
@@ -50,6 +51,7 @@ def main():
 		tokens = text.split()
 		for word in tokens:
 			if word.startswith("#"):
+				#remove punctuation
 				word = regex.sub('',word)
 				if word != "#":
 					emit(word.lower(),"1")

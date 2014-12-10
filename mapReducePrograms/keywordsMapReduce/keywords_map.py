@@ -6,6 +6,8 @@ START_TIME="2014-02-19 00:00:00"
 END_TIME = "2014-02-25 23:59:59"
 start_time_date = datetime.datetime.strptime(START_TIME, "%Y-%m-%d %H:%M:%S").date()
 end_time_date = datetime.datetime.strptime(END_TIME, "%Y-%m-%d %H:%M:%S").date()
+
+#if not in range above, return false
 def inTimeRange(created_at):
 	tokens = created_at.split()
 	year = tokens[5]
@@ -21,6 +23,7 @@ def inTimeRange(created_at):
 		return True
 
 	return False
+
 def emit(key,value):
 	try:
 		print "%s\t%s" % (key,value)
@@ -39,7 +42,7 @@ def main():
 			
 		#grab out the actual text of the tweet
 		text = d['text']
-		#emit the hashtags
+		#emit the keywords
 		tokens = text.split()
 		for word in tokens:
 			if word.isalpha() and len(word)>3:

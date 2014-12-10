@@ -11,34 +11,31 @@ def emitInOrder(results,limit=100):
 
 def emit(key,count):
         print "%s\t%s" % (key,count)
-        #print "%s,%s,%s,%s,%s" % (key,startTime,endTime,rank,count)
 
 def main():
         results = []
         oldkey = None
         count = 0
         for line in stdin:
-                #line = line.strip()
                 arr = line.split("\t")
-                '''
-                emitKey = arr[0].split(";")
-                key = emitKey[0]
-                startTime = emitKey[1]
-                endTime = emitKey[2]
-                '''
                 key = arr[0]
                 value = arr[1]
+                #first time through the file
                 if not oldkey:
                         oldkey = key
                         count = int(value)
                 else:
+                        #still on the old key so add to sum
                         if oldkey == key:
                                 count+=int(value)
                         else:
+                                #got a  new key so append the old key and the old count and set to this rows
                                 results.append((oldkey,count))
                                 oldkey = key
                                 count = int(value)
+        #add the last key and its last count
         results.append((oldkey,count))
+        #emit the keys in sorted order by the count
         emitInOrder(results)
 
 if __name__ == "__main__":

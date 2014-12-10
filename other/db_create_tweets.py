@@ -72,8 +72,8 @@ def main():
 		if coordinates:
 			latLng = coordinates['coordinates'] #this is a list of 2 elements: lat and long
 			if latLng:
-				lat = latLng[0]
-				longi = latLng[1]
+				lat = latLng[1]
+				longi = latLng[0]
 
 		if lat and longi:
 			withLats.write("%s,%s,%s,%s,%s,%s\n" % (tweet_id,lat,longi,time2,retweets,favorites))

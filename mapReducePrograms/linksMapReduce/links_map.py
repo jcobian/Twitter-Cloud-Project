@@ -6,6 +6,7 @@ START_TIME="2014-02-19 00:00:00"
 END_TIME = "2014-02-25 23:59:59"
 start_time_date = datetime.datetime.strptime(START_TIME, "%Y-%m-%d %H:%M:%S").date()
 end_time_date = datetime.datetime.strptime(END_TIME, "%Y-%m-%d %H:%M:%S").date()
+#if not in the time range, return false
 def inTimeRange(created_at):
 	tokens = created_at.split()
 	year = tokens[5]
@@ -21,6 +22,7 @@ def inTimeRange(created_at):
 		return True
 
 	return False
+
 def emit(key,value):
 	try:
 		print "%s\t%s" % (key,value)
@@ -28,10 +30,7 @@ def emit(key,value):
 		pass
 
 def main():
-	#grab all of standard input
-	#index = 0
 	for line in sys.stdin:
-		#index+=1
 		#load in the line into a python dictionary 
 		#(these lines aren't actually json! they are the result of a print of a python dictionary)
 		d = ast.literal_eval(line)
@@ -41,13 +40,10 @@ def main():
 			
 		#grab out the actual text of the tweet
 		text = d['text']
-		
-
-		#emit the hashtags
+		#emit the links
 		tokens = text.split()
 		for word in tokens:
-			if word.startswith("http"):
-				#print "YES"
+			if "http" in word:
 				emit(word,"1")
 
 
