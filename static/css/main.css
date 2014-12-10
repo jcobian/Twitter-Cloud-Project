@@ -113,7 +113,7 @@ textarea {
    ========================================================================== */
 
 
-ul.data-display {
+ol.data-display {
 	overflow: scroll;
 	width: 100%;
 	height: 30em;
@@ -147,6 +147,7 @@ a.button {
 	height: 30em;
 	padding: 0;
 	margin: 0;
+	-webkit-box-shadow: 0em 0em 0.5em 0em grey;
 }
 
 

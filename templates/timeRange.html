@@ -49,28 +49,28 @@
 	<div class="row">
 		<div class="small-12 large-3 columns" id="top-hashtags">
 			<h3>Top Hashtags</h3>
-			<ul class="data-display">
+			<ol class="data-display">
     			{% for hashtag in topHashtags %}
         			<li>{{ hashtag }}</li>
     			{% endfor %}
-    			</ul>
+    			</ol>
 		</div>
 		<div class="small-12 large-3 columns" id="top-keywords">
 			<h3>Top Keywords</h3>
-			<ul class="data-display">
+			<ol class="data-display">
     			{% for keyword in topKeywords %}
         			<li>{{ keyword }}</li>
     			{% endfor %}
-    			</ul>
+    			</ol>
 
 		</div>
 		<div class="small-12 large-6 columns" id="top-links">
 			<h3>Top Links</h3>			
-			<ul class="data-display">
+			<ol class="data-display">
     			{% for link in topLinks %}
         			<li><a href="{{ link.url }}">{{ link.title }}</a></li>
     			{% endfor %}
-    			</ul>
+    			</ol>
 		</div>
 	</div>
 
